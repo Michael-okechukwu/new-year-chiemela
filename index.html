@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page-countdown" class="page active">
+        <h1>open when its</h1>
+        
+        <div class="timer-box">
+            <div class="time-unit"><span id="days">00</span><p>DAYS</p></div>
+            <div class="time-unit"><span id="hours">00</span><p>HOURS</p></div>
+            <div class="time-unit"><span id="mins">00</span><p>MINS</p></div>
+            <div class="time-unit"><span id="secs">00</span><p>SECS</p></div>
+        </div>
+
+        <h2>new year</h2>
+        <img src="images/hello-kitty.png" alt="Cute Hello Kitty" class="hero-img">
+        
+        <button class="btn" onclick="goToPage('page-proposal')">NEXT</button>
+    </div>
+
+    <div id="page-proposal" class="page">
+        <img id="cat-img" src="images/cat-flowers.jpg" alt="Cat with flowers" class="hero-img">
+        
+        <h1 id="proposal-text">Hi Chiemela!<br>i got a suprise for you</h1>
+        
+        <div class="buttons">
+    <button id="yes-btn" class="btn yes-btn" onclick="goToPage('page-ready')">YES</button>
+    <button class="btn no-btn" onclick="handleNoClick()">NO</button>
+    </div>
+    </div>
+
+    <div id="page-ready" class="page">
+        <img src="images/cat-ready.jpg" alt="Cute cat ready" class="hero-img">
+        <h1>Are you ready?</h1>
+        <button class="btn" onclick="goToPage('page-celebration')">YES</button>
+    </div>
+
+    <div id="page-celebration" class="page dark-bg">
+        <div class="fireworks"></div> <h1 class="glow-text">Happy New Year<br>Chiemela Wishing You Everything and More this Year</h1>
+        <button class="btn btn-white" onclick="goToPage('page-menu')">NEXT</button>
+    </div>
+
+    <div id="page-menu" class="page">
+        <h1>GIFTS FOR YOU</h1>
+        <div class="grid-menu">
+            <div class="grid-item" onclick="goToPage('sub-letter')">
+                <span class="icon">💌</span>
+                <p>Letter</p>
+            </div>
+            <div class="grid-item" onclick="goToPage('sub-roses')">
+                <span class="icon">🌹</span>
+                <p>Roses</p>
+            </div>
+            <div class="grid-item" onclick="goToPage('sub-photos')">
+                <span class="icon">📸</span>
+                <p>Memories</p>
+            </div>
+            <div class="grid-item" onclick="goToPage('sub-music')">
+                <span class="icon">🎵</span>
+                <p>Music</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sub-letter" class="page">
+        <div class="card">
+            <img src="images/money.webp" alt="Bear" class="small-img">
+            <p class="letter-text">
+                Hey Chiemela,<br>
+                I'm sending you this little virtual bouquet. I wish I could hand you real flowers, 
+                but until I see you again, let these carry a little bit of my warmth to you. <br>ps: you're a really good friend the best i've had in years
+            <br>oh the flowers are in the next part this for the money you said you like
+            </p>
+        </div>
+        <button class="btn-back" onclick="goToPage('page-menu')">BACK</button>
+    </div>
+
+    <div id="sub-roses" class="page">
+        <img src="images/flowers.jpg" alt="Big Bouquet" class="hero-img">
+        <h1>For you! 🌹</h1>
+        <button class="btn-back" onclick="goToPage('page-menu')">BACK</button>
+    </div>
+
+    <div id="sub-photos" class="page">
+        <h1>Best Moment!</h1>
+        <div class="photo-collage">
+            <img src="images/her1.jpeg" class="photo p1" onclick="togglePhoto(this)">
+            <img src="images/her2.jpeg" class="photo p2" onclick="togglePhoto(this)">
+            <img src="images/her3.jpeg" class="photo p3" onclick="togglePhoto(this)">
+        </div>
+        <button class="btn-back" onclick="goToPage('page-menu')">BACK</button>
+    </div>
+
+    <div id="sub-music" class="page">
+        <div class="cd-player">
+            <img src="images/sondae.jpg" alt="CD Cover" class="cd-disk spinning">
+            <div class="song-info">
+                <h3>Your Song</h3>
+                <p>More Than Everthing By Sondae</p>
+            </div>
+            <audio controls>
+                <source src="song/pouf-salon.fr - more than everything (320 KBps).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <button class="btn-back" onclick="goToPage('page-menu')">BACK</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

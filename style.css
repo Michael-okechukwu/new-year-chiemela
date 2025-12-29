@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Sacramento&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fce4ec; /* Soft Pink */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #4a4a4a;
+}
+
+.page {
+    display: none; /* Hide all pages by default */
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 { font-weight: 800; font-size: 2rem; margin-bottom: 10px; }
+h2 { font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #e91e63; }
+
+/* Images */
+.hero-img { width: 300px; height: 300px; border-radius: 15px; margin: 20px 0; }
+.small-img { width: 300px; height: 300px; margin-bottom: 15px; }
+
+/* Buttons */
+.btn {
+    background: #ff80ab;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+    transition: transform 0.2s;
+}
+.btn:hover { transform: scale(1.05); }
+
+.buttons { display: flex; gap: 20px; }
+.no-btn { background: #b0bec5; }
+.btn-back { margin-top: 20px; background: transparent; border: 2px solid #ff80ab; color: #ff80ab; padding: 8px 20px; border-radius: 20px; cursor:pointer;}
+
+/* Countdown Timer */
+.timer-box { display: flex; gap: 15px; font-weight: bold; margin: 20px 0; }
+.time-unit { text-align: center; }
+.time-unit span { font-size: 2rem; display: block; }
+.time-unit p { font-size: 0.7rem; color: #888; }
+
+/* Dark Mode for Fireworks */
+.dark-bg {
+    background-color: #000;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    justify-content: center;
+}
+.glow-text { text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081; }
+.btn-white { background: white; color: black; }
+
+/* Grid Menu */
+.grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.grid-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.grid-item:hover { transform: translateY(-5px); }
+.icon { font-size: 3rem; }
+
+/* Photo Collage (Simple Stack) */
+/* Photo Collage (Interactive Stack) */
+.photo-collage { 
+    position: relative; 
+    height: 400px; /* Made slightly taller to fit enlarged photos */
+    width: 300px; 
+    margin: 60px auto; 
+}
+
+.photo { 
+    width: 200px; 
+    border: 8px solid white; /* Thicker border looks more like a polaroid */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+    position: absolute; 
+    left: 50%;
+    
+    /* Smooth animation for the pop-up effect */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    cursor: pointer;
+}
+
+/* Default Stack Positions */
+.p1 { transform: translateX(-50%) rotate(-10deg); top: 20px; z-index: 1;}
+.p2 { transform: translateX(-50%) rotate(5deg); top: 60px; z-index: 2;}
+.p3 { transform: translateX(-50%) rotate(-5deg); top: 100px; z-index: 3;}
+
+/* The "Enlarged" State */
+.photo.active {
+    top: 50% !important; /* Move to vertical center */
+    z-index: 100 !important; /* Force to the very top */
+    transform: translate(-50%, -50%) scale(1.6) rotate(0deg) !important; /* Center and Big */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Big shadow for depth */
+}
+/* Music CD Spin */
+.cd-player { text-align: center; }
+.cd-disk { 
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%; 
+    border: 5px solid white;
+    margin-bottom: 20px;
+}
+.spinning { animation: spin 4s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- FIREWORKS ANIMATION --- */
+
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Lets clicks pass through to buttons */
+    z-index: 1; 
+    overflow: hidden;
+}
+
+/* We create 3 different fireworks using pseudo-elements and shadows */
+.fireworks::before, .fireworks::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    /* This creates the explosion shape using box-shadows */
+    box-shadow: 
+        -120px -218.66px #00ffdd, 
+        248px -16.66px #00ff80, 
+        190px 16.33px #002bff, 
+        -113px -308.66px #ff009d, 
+        -109px -63.66px #ff0000, 
+        -50px -100.66px #ffff00, 
+        90px -150.66px #ff8800;
+    animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+}
+
+.fireworks::after {
+    animation-delay: 1.25s, 1.25s, 1.25s;
+    animation-duration: 1.25s, 1.25s, 6.25s;
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+
+/* 1. The Explosion (Particles spreading out) */
+@keyframes bang {
+  to {
+    box-shadow: 
+        -70px -118.66px rgba(0,255,221,0), 
+        148px -16.66px rgba(0,255,128,0), 
+        90px 16.33px rgba(0,43,255,0), 
+        -63px -208.66px rgba(255,0,157,0), 
+        -59px -63.66px rgba(255,0,0,0), 
+        0px -100.66px rgba(255,255,0,0), 
+        40px -150.66px rgba(255,136,0,0);
+  }
+}
+
+/* 2. Gravity (Particles falling down) */
+@keyframes gravity {
+  to {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+}
+
+/* 3. Position (Moving the explosion center around the screen) */
+@keyframes position {
+  0%, 19.9% { margin-top: 10%; margin-left: 40%; }
+  20%, 39.9% { margin-top: 40%; margin-left: 30%; }
+  40%, 59.9% { margin-top: 20%; margin-left: 70%; }
+  60%, 79.9% { margin-top: 30%; margin-left: 20%; }
+  80%, 99.9% { margin-top: 30%; margin-left: 80%; }
+}
