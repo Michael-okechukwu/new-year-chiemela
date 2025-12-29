@@ -205,3 +205,64 @@ h2 { font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #e91e63; }
   60%, 79.9% { margin-top: 30%; margin-left: 20%; }
   80%, 99.9% { margin-top: 30%; margin-left: 80%; }
 }
+
+/* ===========================
+   MEDIA QUERIES (RESPONSIVE)
+   =========================== */
+
+/* 1. For Small Phones (iPhone SE, older Androids) 
+   We reduce sizes so everything fits without scrolling */
+@media screen and (max-width: 380px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller text */
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-img {
+        width: 180px; /* Smaller main images */
+    }
+
+    /* Shrink the timer so it doesn't break into two lines */
+    .timer-box {
+        gap: 8px;
+    }
+    .time-unit span {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust the photo collage to fit narrow screens */
+    .photo-collage {
+        width: 100%; /* Use full available width */
+        height: 350px;
+    }
+    .photo {
+        width: 160px; /* Smaller polaroids */
+    }
+}
+
+/* 2. For Short Screens or Landscape Mode 
+   If the screen is short, we enable scrolling so buttons aren't cut off */
+@media screen and (max-height: 700px) {
+    body {
+        height: auto; /* Remove fixed height */
+        min-height: 100vh;
+        overflow-y: auto; /* Allow vertical scrolling */
+        padding: 20px 0;
+    }
+
+    .page {
+        animation: none; /* Remove bounce animation to prevent jitter */
+        margin-top: 10px;
+    }
+
+    /* Reduce margins so more content fits */
+    .hero-img {
+        margin: 10px 0;
+    }
+    h1 {
+        margin-bottom: 5px;
+    }
+}
