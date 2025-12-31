@@ -56,10 +56,7 @@ function handleNoClick() {
 
 // 3. Countdown Timer Logic
 function updateTimer() {
-    // --- DATE SETTINGS ---
-    // TO TEST THIS NOW: Change the date below to a time 10 seconds in the future.
-    // Example: new Date("Dec 31, 2025 23:59:59").getTime();
-    
+    // Set the date we're counting down to
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
     const newYearDate = new Date(`January 1, ${nextYear} 00:00:00`).getTime();
@@ -67,38 +64,30 @@ function updateTimer() {
     const now = new Date().getTime();
     const gap = newYearDate - now;
 
-    // Get elements
-    const nextBtn = document.getElementById('countdown-next-btn');
-    const waitMsg = document.getElementById('wait-message');
-
-    if (gap <= 0) {
-        // --- TIMER FINISHED ---
-        document.getElementById('days').innerText = "00";
-        document.getElementById('hours').innerText = "00";
-        document.getElementById('mins').innerText = "00";
-        document.getElementById('secs').innerText = "00";
-
-        // Show Button, Hide Message
-        if (nextBtn) nextBtn.style.display = "inline-block";
-        if (waitMsg) waitMsg.style.display = "none";
-
-    } else {
-        // --- TIMER RUNNING ---
+    if (gap > 0) {
+        // Calculate time
         const d = Math.floor(gap / (1000 * 60 * 60 * 24));
         const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((gap % (1000 * 60)) / 1000);
 
+        // Update HTML
         document.getElementById('days').innerText = d < 10 ? "0" + d : d;
         document.getElementById('hours').innerText = h < 10 ? "0" + h : h;
         document.getElementById('mins').innerText = m < 10 ? "0" + m : m;
         document.getElementById('secs').innerText = s < 10 ? "0" + s : s;
-
-        // Hide Button, Show Message
-        if (nextBtn) nextBtn.style.display = "none";
-        if (waitMsg) waitMsg.style.display = "block";
+    } else {
+        // Timer finished: Set everything to 00
+        document.getElementById('days').innerText = "00";
+        document.getElementById('hours').innerText = "00";
+        document.getElementById('mins').innerText = "00";
+        document.getElementById('secs').innerText = "00";
     }
 }
+
+// Update timer every second
+setInterval(updateTimer, 1000);
+updateTimer();
 
 // Update timer every second
 setInterval(updateTimer, 1000);
