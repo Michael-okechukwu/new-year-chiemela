@@ -89,13 +89,6 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-// Update timer every second
-setInterval(updateTimer, 1000);
-updateTimer();
-// Update timer every second
-setInterval(updateTimer, 1000);
-updateTimer(); // Initial call
-
 // Function to handle photo stacking
 function togglePhoto(el) {
     // 1. Get all photos
