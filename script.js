@@ -58,7 +58,7 @@ function handleNoClick() {
 function updateTimer() {
     // Set the date we're counting down to
     const currentYear = new Date().getFullYear();
-    const nextYear = currentYear + 1;
+    const nextYear = currentYear ;
     const newYearDate = new Date(`January 1, ${nextYear} 00:00:00`).getTime();
 
     const now = new Date().getTime();
